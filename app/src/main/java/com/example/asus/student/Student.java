@@ -1,15 +1,22 @@
 package com.example.asus.student;
 
 public class Student {
-    public String getName(String name) {
+    public static void set_id(int id) {
+    }
+
+    public static void setname(String name) {
+    }
+
+    public String getName() {
         return this.name;
     }
+
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getId(String id) {
+    public String getId() {
         return this.id;
     }
 
@@ -17,16 +24,18 @@ public class Student {
         this.id = id;
     }
 
-    public Long getPhone(Long phone) {
+    public Long getPhone() {
         return this.phone;
     }
 
-    public void setPhone(Long phone) {
+    public  void setPhone(Long phone) {
         this.phone = phone;
     }
 
-    public  String name;
-    public  String id;
-    public  Long phone;
+    private   String name;
+    private  String id;
+    private   Long phone;
+
+
 
 }

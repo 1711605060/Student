@@ -1,16 +1,93 @@
 package com.example.asus.student;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MySQLiteAdapter {
     SQLiteDatabase db=null;
     Context context=null;
 
+
+
     public  MySQLiteAdapter(Context context){this.context=context; }
 
-    public  void openDB(){
-MyHelper myHelper=new MyHelper();
-db=myHelper.getWritableDatabase();
+
+    public void openDB() {
+        MyHelper myHelper = new MyHelper(context, "database.db", null, 1);
+        db = myHelper.getWritableDatabase();
+
     }
+    private void closeDB() {
+        if (db.isOpen()) {
+            db.close();
+        }
+        db = null;
+    }
+
+
+    public boolean insert (Student student){
+        boolean result=false;
+        openDB();
+       ContentValues values=new ContentValues();
+      values.put("name",student.getName());
+      values.put("phone",student.getPhone());
+      values.put("id",student.getId());
+      Long rowid=db.insert("information",null,values);
+      if (rowid!=-1){
+          result=true;
+          Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show();
+          Log.i("数据库操作","添加成功");
+      }
+       closeDB();
+       return result;
+   }
+    public List<Student> queryAll(String s) {
+        List<Student> list = new ArrayList<>();
+        openDB();
+        Cursor cursor = db.query("information", null, null, null, null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndex("_id"));
+                String name = cursor.getString(cursor.getColumnIndex("name"));
+                Long Phone = cursor.getLong(cursor.getColumnIndex("phone"));
+                Student student=new Student();
+                student.set_id(id);
+                Student.setname(name);
+                student.setPhone(Phone);
+                list.add(student);
+            } while (cursor.moveToNext());
+        }
+        closeDB();
+        return list;
+
+
+    }
+    public int deleteByName(String name) {
+        int result = -1;
+        openDB();
+        result = db.delete("information", "name=?", new String[]{name});
+
+
+        closeDB();
+        return result;
+    }
+    public  int update(Student infer){
+        int result=-1;
+        openDB();
+        ContentValues values=new ContentValues();
+        values.put("phone",infer.getPhone());
+        result=db.update("information",values,"name=",new String[]{infer.getName()});
+        closeDB();
+        return  result;
+    }
+
+
 }

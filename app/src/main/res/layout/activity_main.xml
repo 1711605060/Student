@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_course">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/Tv_coures_title"
@@ -25,26 +25,26 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="姓名："
-        app:layout_constraintEnd_toStartOf="@+id/edtTxt_course_course"
+        app:layout_constraintEnd_toStartOf="@+id/edtTxt_course_id"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Tv_coures_title" />
 
     <EditText
-        android:id="@+id/edtTxt_course_course"
+        android:id="@+id/edtTxt_course_id"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="活动名称："
-        app:layout_constraintEnd_toStartOf="@+id/edtTxt_course_score"
+        app:layout_constraintEnd_toStartOf="@+id/edtTxt_course_phone"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/edtTxt_course_name"
         app:layout_constraintTop_toBottomOf="@+id/Tv_coures_title" />
 
     <EditText
-        android:id="@+id/edtTxt_course_score"
+        android:id="@+id/edtTxt_course_phone"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
@@ -53,7 +53,7 @@
         android:text="分数："
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/edtTxt_course_course"
+        app:layout_constraintStart_toEndOf="@+id/edtTxt_course_id"
         app:layout_constraintTop_toBottomOf="@+id/Tv_coures_title" />
 
     <TextView

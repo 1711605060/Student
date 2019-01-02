@@ -20,22 +20,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         txtName = findViewById(R.id.edtTxt_course_name);
-        txtid = findViewById(R.id.edtTxt_course_id);
         txtphone = findViewById(R.id.edtTxt_course_phone);
-
         textView = findViewById(R.id.tvshow);
         findViewById(R.id.btn_insert).setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
                 String name = txtName.getText().toString().trim();
-                int id = Integer.parseInt(txtid.getText().toString().trim());
-                int Phone= Integer.parseInt(txtphone.getText().toString().trim());
+                Long phone=Long.valueOf(txtphone.getText().toString().trim());
                 Student student = new Student();
                 student.setName(name);
-                student.setId(id);
-                student.setPhone(Phone);
+                student.setPhone(phone);
                 MySQLiteAdapter adapter = new MySQLiteAdapter(getApplicationContext());
                 adapter.insert(student);
 
@@ -70,10 +64,8 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(null);
                 while (iterator.hasNext()){
                     Student student=iterator.next();
-                    textView.append("_ID:"+String.valueOf(student.get_id()));
-                    textView.append("ID:"+String.valueOf(student.getId()));
-                    textView.append("name:"+student.getName());
-                    textView.append("Phone:"+String.valueOf(student.getPhone())+"/n");
+                    textView.append("姓名:"+student.getName());
+                    textView.append("素拓分数:"+String.valueOf(student.getPhone()));
                 }
             }
         });
@@ -93,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         Student student = new Student();
                         String name = txtName.getText().toString().trim();
+                        Long phone=Long.valueOf(txtphone.getText().toString().trim());
                         student.setName(name);
-                        int Phone= Integer.parseInt(txtphone.getText().toString().trim());
-                       student.setPhone(Phone);
+                       student.setPhone(phone);
                         MySQLiteAdapter adapter = new MySQLiteAdapter(getApplicationContext());
                         int num = adapter.update(student);
                         textView.setText("更新记录条数：" + String.valueOf(num));

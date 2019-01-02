@@ -13,7 +13,7 @@ public class MyHelper extends SQLiteOpenHelper {
  }
 
     public void onCreate(SQLiteDatabase db) {
-        String sql="create table information(_id integer primary key autoincrement,name varchar(20),phone integer)";
+        String sql="create table information(_id integer primary key autoincrement,id integer,name varchar(20),phone integer)";
         db.execSQL(sql);
     }
 

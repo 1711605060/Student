@@ -26,7 +26,7 @@
         android:ems="10"
         android:hint="姓名："
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toStartOf="@+id/edtTxt_course_phone"
+        app:layout_constraintEnd_toStartOf="@+id/edt_course"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Tv_coures_title" />
@@ -41,7 +41,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/edtTxt_course_name"
+        app:layout_constraintStart_toEndOf="@+id/edt_course"
         app:layout_constraintTop_toBottomOf="@+id/Tv_coures_title" />
 
     <TextView
@@ -80,21 +80,9 @@
         android:layout_marginTop="148dp"
         android:text="查询"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_update"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_insert"
-        app:layout_constraintTop_toBottomOf="@+id/Tv_coures_title" />
-
-    <Button
-        android:id="@+id/btn_update"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="148dp"
-        android:text="修改"
-        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/btn_delete"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_query"
+        app:layout_constraintStart_toEndOf="@+id/btn_insert"
         app:layout_constraintTop_toBottomOf="@+id/Tv_coures_title" />
 
     <Button
@@ -106,7 +94,20 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_update"
+        app:layout_constraintStart_toEndOf="@+id/btn_query"
         app:layout_constraintTop_toBottomOf="@+id/Tv_coures_title"
         tools:text="删除" />
+
+    <EditText
+        android:id="@+id/edt_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:ems="10"
+        android:hint="名称："
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/edtTxt_course_phone"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/edtTxt_course_name"
+        app:layout_constraintTop_toBottomOf="@+id/Tv_coures_title" />
 </android.support.constraint.ConstraintLayout>

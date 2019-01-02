@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    EditText txtName, txtid, txtphone;
+    EditText txtName, txtphone,txtscore;
 
     TextView textView;
 
@@ -21,13 +21,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         txtName = findViewById(R.id.edtTxt_course_name);
         txtphone = findViewById(R.id.edtTxt_course_phone);
+        txtscore=findViewById(R.id.edt_course);
         textView = findViewById(R.id.tvshow);
         findViewById(R.id.btn_insert).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String name = txtName.getText().toString().trim();
+
                 Long phone=Long.valueOf(txtphone.getText().toString().trim());
                 Student student = new Student();
+
                 student.setName(name);
                 student.setPhone(phone);
                 MySQLiteAdapter adapter = new MySQLiteAdapter(getApplicationContext());
@@ -80,21 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "删除记录条数" + String.valueOf(num), Toast.LENGTH_SHORT).show();
                     }
                 });
-                findViewById(R.id.btn_update).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Student student = new Student();
-                        String name = txtName.getText().toString().trim();
-                        Long phone=Long.valueOf(txtphone.getText().toString().trim());
-                        student.setName(name);
-                       student.setPhone(phone);
-                        MySQLiteAdapter adapter = new MySQLiteAdapter(getApplicationContext());
-                        int num = adapter.update(student);
-                        textView.setText("更新记录条数：" + String.valueOf(num));
 
-
-                    }
-                });
             }
 
 

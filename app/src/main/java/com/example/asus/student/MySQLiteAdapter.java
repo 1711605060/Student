@@ -36,6 +36,7 @@ public class MySQLiteAdapter {
         boolean result=false;
         openDB();
        ContentValues values=new ContentValues();
+
       values.put("name",student.getName());
       values.put("phone",student.getPhone());
 
@@ -52,7 +53,7 @@ public class MySQLiteAdapter {
        closeDB();
        return result;
    }
-   /* public List<Student> queryAll(String s) {
+   public List<Student> query(String s) {
         List<Student> list = new ArrayList<>();
         openDB();
         Cursor cursor = db.query("information", null, null, null, null, null, null);
@@ -60,11 +61,13 @@ public class MySQLiteAdapter {
         if (cursor.moveToFirst()) {
             do {
                 int id = cursor.getInt(cursor.getColumnIndex("_id"));
+
                 String name = cursor.getString(cursor.getColumnIndex("name"));
                 Long Phone = cursor.getLong(cursor.getColumnIndex("phone"));
                 Student student=new Student();
                 student.set_id(id);
-                Student.setname(name);
+
+                student.setName(name);
                 student.setPhone(Phone);
                 list.add(student);
             } while (cursor.moveToNext());
@@ -73,8 +76,8 @@ public class MySQLiteAdapter {
         return list;
 
 
-    }*/
-   public List<Student> query(String name) {
+    }
+  /* public List<Student> query(String name) {
        List<Student> list = new ArrayList<>();
        openDB();
        Cursor cursor = db.query("information", null, null, null, null, null, null);
@@ -82,11 +85,13 @@ public class MySQLiteAdapter {
        if (cursor.moveToFirst()) {
            do {
                String mname = cursor.getString(cursor.getColumnIndex("name"));
+               String score= cursor.getString(cursor.getColumnIndex("score"));
                if (mname.equals(name)){
                    int id = cursor.getInt(cursor.getColumnIndex("_id"));
                    Long Phone = cursor.getLong(cursor.getColumnIndex("phone"));
                    Student student = new Student();
                    student.set_id(id);
+                   student.setScore(score);
                    student.setName(mname);
                    student.setPhone(Phone);
                    list.add(student);
@@ -98,7 +103,7 @@ public class MySQLiteAdapter {
        return list;
 
 
-   }
+   }*/
     public int deleteByName(String name) {
         int result = -1;
         openDB();
@@ -108,15 +113,7 @@ public class MySQLiteAdapter {
         closeDB();
         return result;
     }
-    public  int update(Student infer){
-        int result=-1;
-        openDB();
-        ContentValues values=new ContentValues();
-        values.put("phone",infer.getPhone());
-        result=db.update("information",values,"name=",new String[]{infer.getName()});
-        closeDB();
-        return  result;
-    }
+
 
 
 }

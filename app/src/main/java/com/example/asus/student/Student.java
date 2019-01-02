@@ -1,40 +1,45 @@
 package com.example.asus.student;
 
 public class Student {
-    public static void set_id(int id) {
+    private int _id;
+
+
+
+    public int getId() {
+        return id;
     }
 
-    public static void setname(String name) {
+    public void setId(int id) {
+        this.id = id;
     }
 
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
     public String getName() {
-        return this.name;
+        return name;
     }
-
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getId() {
-        return this.id;
+    public int getPhone() {
+        return phone;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Long getPhone() {
-        return this.phone;
-    }
-
-    public  void setPhone(Long phone) {
+    public void setPhone(int phone) {
         this.phone = phone;
     }
 
-    private   String name;
-    private  String id;
-    private   Long phone;
+    private  int id;
+    private  String name;
+    private  int phone;
+
 
 
 

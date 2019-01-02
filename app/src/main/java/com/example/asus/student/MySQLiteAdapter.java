@@ -39,16 +39,20 @@ public class MySQLiteAdapter {
       values.put("name",student.getName());
       values.put("phone",student.getPhone());
       values.put("id",student.getId());
+
       Long rowid=db.insert("information",null,values);
       if (rowid!=-1){
           result=true;
           Toast.makeText(context, "添加成功", Toast.LENGTH_SHORT).show();
           Log.i("数据库操作","添加成功");
+      }else {
+          Toast.makeText(context, "添加失败", Toast.LENGTH_SHORT).show();
+          Log.i("数据库操作", "添加失败");
       }
        closeDB();
        return result;
    }
-    public List<Student> queryAll(String s) {
+   /* public List<Student> queryAll(String s) {
         List<Student> list = new ArrayList<>();
         openDB();
         Cursor cursor = db.query("information", null, null, null, null, null, null);
@@ -69,7 +73,33 @@ public class MySQLiteAdapter {
         return list;
 
 
-    }
+    }*/
+   public List<Student> query(String name) {
+       List<Student> list = new ArrayList<>();
+       openDB();
+       Cursor cursor = db.query("information", null, null, null, null, null, null);
+
+       if (cursor.moveToFirst()) {
+           do {
+               String mname = cursor.getString(cursor.getColumnIndex("name"));
+               if (mname.equals(name)){
+                   int id = cursor.getInt(cursor.getColumnIndex("_id"));
+                   int Phone = cursor.getInt(cursor.getColumnIndex("phone"));
+                   Student student = new Student();
+                   student.set_id(id);
+                   student.setId(id);
+                   student.setName(mname);
+                   student.setPhone(Phone);
+                   list.add(student);
+               }
+
+           } while (cursor.moveToNext());
+       }
+       closeDB();
+       return list;
+
+
+   }
     public int deleteByName(String name) {
         int result = -1;
         openDB();

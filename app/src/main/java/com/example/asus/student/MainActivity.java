@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,22 +30,22 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = txtName.getText().toString().trim();
-                String id = txtid.getText().toString().trim();
-//                Long phone = Long.valueOf(txtphone.getText().toString().trim());
+                int id = Integer.parseInt(txtid.getText().toString().trim());
+                int Phone= Integer.parseInt(txtphone.getText().toString().trim());
                 Student student = new Student();
                 student.setName(name);
                 student.setId(id);
-          //      student.setPhone(phone);
+                student.setPhone(Phone);
                 MySQLiteAdapter adapter = new MySQLiteAdapter(getApplicationContext());
                 adapter.insert(student);
 
             }
         });
-       /* findViewById(R.id.btn_query).setOnClickListener(new View.OnClickListener() {
+       /*findViewById(R.id.btn_query).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MySQLiteAdapter adapter= new MySQLiteAdapter(getApplicationContext());
-                List<Student> list=adapter.queryAll(txtName.getText().toString());
+                List<Student> list=adapter.query(txtName.getText().toString());
 
                 StringBuffer sb = new StringBuffer();
                 for (int i = 0; i < list.size(); i++) {
@@ -58,36 +59,52 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 MySQLiteAdapter adapter= new MySQLiteAdapter(getApplicationContext());
-                List<Student> list=adapter.queryAll(txtName.getText().toString());
+                List<Student> list=adapter.query(txtName.getText().toString());
 
-                textView.setText(txtName.toString());
+                StringBuffer sb = new StringBuffer();
+                for (int i = 0; i < list.size(); i++) {
+                    sb.append("姓名： "+list.get(i).getName()+"\n");
+                }
+                textView.setText(sb.toString());
+                Iterator<Student> iterator=list.iterator();
+                textView.setText(null);
+                while (iterator.hasNext()){
+                    Student student=iterator.next();
+                    textView.append("_ID:"+String.valueOf(student.get_id()));
+                    textView.append("ID:"+String.valueOf(student.getId()));
+                    textView.append("name:"+student.getName());
+                    textView.append("Phone:"+String.valueOf(student.getPhone())+"/n");
+                }
             }
         });
-        findViewById(R.id.btn_delete).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name=txtName.getText().toString().trim();
-                MySQLiteAdapter adapter=new MySQLiteAdapter(getApplicationContext());
-                int num=0;
-                num=adapter.deleteByName(name);
-                textView.setText("删除记录条数："+String.valueOf(num));
-                Toast.makeText(getApplicationContext(),"删除记录条数"+String.valueOf(num),Toast.LENGTH_SHORT).show();
-            }
-        });
-        findViewById(R.id.btn_update).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Student student=new Student();
-                String name=txtName.getText().toString().trim();
-                student.setName(name);
-           Long phone=Long.valueOf(txtid.getText().toString().trim());
-               student.setPhone(phone);
-                MySQLiteAdapter adapter=new MySQLiteAdapter(getApplicationContext());
-                int num=adapter.update(student);
-                textView.setText("更新记录条数："+String.valueOf(num));
+                findViewById(R.id.btn_delete).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String name = txtName.getText().toString().trim();
+                        MySQLiteAdapter adapter = new MySQLiteAdapter(getApplicationContext());
+                        int num = 0;
+                        num = adapter.deleteByName(name);
+                        textView.setText("删除记录条数：" + String.valueOf(num));
+                        Toast.makeText(getApplicationContext(), "删除记录条数" + String.valueOf(num), Toast.LENGTH_SHORT).show();
+                    }
+                });
+                findViewById(R.id.btn_update).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Student student = new Student();
+                        String name = txtName.getText().toString().trim();
+                        student.setName(name);
+                        int Phone= Integer.parseInt(txtphone.getText().toString().trim());
+                       student.setPhone(Phone);
+                        MySQLiteAdapter adapter = new MySQLiteAdapter(getApplicationContext());
+                        int num = adapter.update(student);
+                        textView.setText("更新记录条数：" + String.valueOf(num));
 
 
+                    }
+                });
             }
-        });
-    }
+
+
 }
+

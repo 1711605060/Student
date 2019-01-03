@@ -36,7 +36,7 @@ public class MySQLiteAdapter {
         boolean result=false;
         openDB();
        ContentValues values=new ContentValues();
-
+        values.put("score",student.getScore());
       values.put("name",student.getName());
       values.put("phone",student.getPhone());
 
@@ -61,12 +61,12 @@ public class MySQLiteAdapter {
         if (cursor.moveToFirst()) {
             do {
                 int id = cursor.getInt(cursor.getColumnIndex("_id"));
-
+                String score = cursor.getString(cursor.getColumnIndex("score"));
                 String name = cursor.getString(cursor.getColumnIndex("name"));
                 Long Phone = cursor.getLong(cursor.getColumnIndex("phone"));
                 Student student=new Student();
                 student.set_id(id);
-
+                student.setScore(score);
                 student.setName(name);
                 student.setPhone(Phone);
                 list.add(student);

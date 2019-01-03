@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String name = txtName.getText().toString().trim();
-
+                String score= txtscore.getText().toString().trim();
                 Long phone=Long.valueOf(txtphone.getText().toString().trim());
                 Student student = new Student();
-
+                student.setScore(score);
                 student.setName(name);
                 student.setPhone(phone);
                 MySQLiteAdapter adapter = new MySQLiteAdapter(getApplicationContext());
@@ -67,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
                 textView.setText(null);
                 while (iterator.hasNext()){
                     Student student=iterator.next();
-                    textView.append("姓名:"+student.getName());
+                    textView.append("姓名:"+student.getName()+",");
+                    textView.append("活动名称:"+student.getScore()+",");
                     textView.append("素拓分数:"+String.valueOf(student.getPhone()));
                 }
             }
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "删除记录条数" + String.valueOf(num), Toast.LENGTH_SHORT).show();
                     }
                 });
+
 
             }
 

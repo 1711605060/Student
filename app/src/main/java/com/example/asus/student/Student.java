@@ -28,6 +28,15 @@ public class Student {
         this.phone = phone;
     }
 
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    private String score;
     private  String name;
     private  Long phone;
 

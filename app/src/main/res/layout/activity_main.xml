@@ -26,7 +26,7 @@
         android:layout_marginLeft="208dp"
         android:layout_marginTop="52dp"
         android:ems="10"
-        android:hint="姓名："
+        android:hint="学号："
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Tv_coures_title" />
@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="124dp"
         android:layout_marginLeft="124dp"
-        android:text="姓名："
+        android:text="学号："
         android:textSize="24sp"
         app:layout_constraintBaseline_toBaselineOf="@+id/edtTxt_course_name"
         app:layout_constraintStart_toStartOf="parent" />
@@ -130,7 +130,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:text="素拓分名称："
+        android:text="活动名称："
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

@@ -1,5 +1,6 @@
 package com.example.asus.student;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     EditText txtName, txtphone,txtscore;
 
-    TextView textView;
+    TextView textView,textaccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,11 @@ public class MainActivity extends AppCompatActivity {
         txtphone = findViewById(R.id.edtTxt_course_phone);
         txtscore=findViewById(R.id.edt_course);
         textView = findViewById(R.id.tvshow);
+        textaccount=findViewById(R.id.txt_account);
+        Intent intent=getIntent();
+        String name=intent.getStringExtra("name");
+         textaccount.setText("用户名："+name);
+
         findViewById(R.id.btn_insert).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
